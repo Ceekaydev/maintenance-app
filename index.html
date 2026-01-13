@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <title>Maintenance Request Logger</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input, textarea { display: block; margin-bottom: 10px; width: 300px; padding: 6px; }
+    button { padding: 8px 16px; cursor: pointer; }
+    p#status { font-weight: bold; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Log Maintenance Request</h2>
+
+  <input id="customer" placeholder="Customer Name">
+  <input id="device" placeholder="Device ID">
+  <textarea id="issue" placeholder="Describe issue"></textarea>
+
+  <button onclick="submitForm()">Submit</button>
+
+  <p id="status"></p>
+
+  <script>
+    function submitForm() {
+      const data = {
+        customer: document.getElementById("customer").value,
+        device: document.getElementById("device").value,
+        issue: document.getElementById("issue").value
+      };
+
+      if(!data.customer || !data.device || !data.issue){
+        document.getElementById("status").innerText = "All fields are required!";
+        return;
+      }
+
+      google.script.run
+        .withSuccessHandler(msg => {
+          document.getElementById("status").innerText = msg;
+          // Clear form
+          document.getElementById("customer").value = "";
+          document.getElementById("device").value = "";
+          document.getElementById("issue").value = "";
+        })
+        .saveRequest(data);
+    }
+  </script>
+</body>
+</html>
