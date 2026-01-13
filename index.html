@@ -15,6 +15,7 @@
 
   <input id="customer" placeholder="Customer Name">
   <input id="device" placeholder="Device ID">
+  <input id="phone" placeholder="Phone Number">
   <textarea id="issue" placeholder="Describe issue"></textarea>
 
   <button onclick="submitForm()">Submit</button>
@@ -26,6 +27,7 @@
       const data = {
         customer: document.getElementById("customer").value,
         device: document.getElementById("device").value,
+        phone: document.getElementById("phone").value,
         issue: document.getElementById("issue").value
       };
 
@@ -40,6 +42,7 @@
           // Clear form
           document.getElementById("customer").value = "";
           document.getElementById("device").value = "";
+          document.getElementById("phone").value = "";
           document.getElementById("issue").value = "";
         })
         .saveRequest(data);

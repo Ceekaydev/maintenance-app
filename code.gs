@@ -5,6 +5,7 @@ function saveRequest(data) {
     new Date(),
     data.customer,
     data.device,
+    data.phone,
     data.issue
   ]);
   return "Saved successfully!";
